@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CoffeeTEK</string>
+    <string name="not_item_products">Não há produtos cadastrados</string>
+    <string name="error_server">Ops!!! Foi encontrado algum erro na requisão dos pordutos. Tente novamente</string>
 </resources>
