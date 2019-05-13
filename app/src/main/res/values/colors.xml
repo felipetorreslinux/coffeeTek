@@ -8,4 +8,6 @@
     <color name="colorButton">#C18874</color>
     <color name="colorBgItem">#F9F8F7</color>
     <color name="colorText">#4E342E</color>
+    <color name="colorGray">#e6e6e6</color>
+    <color name="colorGrayDark">#B5ACAB</color>
 </resources>

@@ -59,12 +59,8 @@ public class ViewListProducts extends AppCompatActivity {
         recycler.addItemDecoration(new DividerItemDecoration(recycler.getContext(), DividerItemDecoration.VERTICAL));
         recycler.setNestedScrollingEnabled(false);
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         ListProducts();
+
     }
 
     @Override
@@ -103,7 +99,7 @@ public class ViewListProducts extends AppCompatActivity {
 
         list_products = new ArrayList<ProductsModel>();
         list_products.clear();
-        AndroidNetworking.get("https://desafio-mobility.herokuapp.com/products.json")
+        AndroidNetworking.get(Server.produtos())
         .setTag("ListProducts")
         .build()
         .getAsJSONObject(new JSONObjectRequestListener() {
@@ -119,6 +115,7 @@ public class ViewListProducts extends AppCompatActivity {
                             productsModel.setImage(jsonObject.getString("image"));
                             productsModel.setSize(jsonObject.getInt("size"));
                             productsModel.setSugar(jsonObject.getInt("sugar"));
+                            productsModel.setQuantity(1);
                             list_products.add(productsModel);
                         }
                         adapterListProducts = new AdapterListProducts(context, list_products);

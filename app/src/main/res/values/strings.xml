@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">CoffeeTEK</string>
     <string name="not_item_products">Não há produtos cadastrados</string>
+    <string name="toolbar_title_list_products">Menu</string>
+    <string name="toolbar_title_detail_product">Detalhes</string>
     <string name="error_server">Ops!!! Foi encontrado algum erro na requisão dos pordutos. Tente novamente</string>
+    <string name="label_for_size">Tamanho</string>
+    <string name="label_for_sugar">Açucar</string>
+    <string name="label_for_addtionals">Adicionais</string>
+    <string name="label_for_quantity">Quantidade</string>
+    <string name="label_button_detail_product">Colocar no Carrinho</string>
 </resources>

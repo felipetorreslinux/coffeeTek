@@ -1,6 +1,7 @@
 package com.coffeetek.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.coffeetek.R;
 import com.coffeetek.models.ProductsModel;
 import com.coffeetek.utils.Images;
+import com.coffeetek.views.ViewDetailProduct;
 import com.daimajia.swipe.SwipeLayout;
 import com.squareup.picasso.Picasso;
 
@@ -38,10 +40,19 @@ public class AdapterListProducts extends RecyclerView.Adapter<AdapterListProduct
 
     @Override
     public void onBindViewHolder(@NonNull ProductsHolder holder, int i) {
-        ProductsModel itens = lista.get(i);
+        final ProductsModel itens = lista.get(i);
 
         holder.imageProd.setImageBitmap(Images.imageUrl(itens.getImage()));
         holder.textTitleProd.setText(itens.getTitle());
+
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ViewDetailProduct.class);
+                intent.putExtra("product", itens);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

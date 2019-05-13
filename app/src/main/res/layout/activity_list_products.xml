@@ -17,7 +17,7 @@
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:textColor="@color/colorText"
             android:layout_gravity="center"
-            android:text="Menu"/>
+            android:text="@string/toolbar_title_list_products"/>
 
     </android.support.v7.widget.Toolbar>
 

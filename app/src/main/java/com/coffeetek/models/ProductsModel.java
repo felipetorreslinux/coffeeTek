@@ -10,6 +10,7 @@ public class ProductsModel implements Serializable {
     int size;
     int sugar;
     String additional;
+    int quantity;
 
     public ProductsModel() {}
 
@@ -51,5 +52,13 @@ public class ProductsModel implements Serializable {
 
     public void setAdditional(String additional) {
         this.additional = additional;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
