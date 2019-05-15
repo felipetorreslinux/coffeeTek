@@ -87,7 +87,7 @@ public class ViewListProducts extends AppCompatActivity implements View.OnClickL
     protected void onStart() {
         super.onStart();
         textInfoCart.setVisibility(sqLiCart.count() > 0 ? View.VISIBLE : View.GONE);
-        textInfoCart.setText(getString(R.string.info_cart_count, sqLiCart.count(), sqLiCart.count() > 0 ? "itens" : "item"));
+        textInfoCart.setText(getString(R.string.info_cart_count, sqLiCart.count(), sqLiCart.count() > 1 ? "itens" : "item"));
         if(countCart != null){
             countCart.setVisibility(sqLiCart.count() > 0 ? View.VISIBLE : View.GONE);
             countCart.setText(Integer.toString(sqLiCart.count()));
