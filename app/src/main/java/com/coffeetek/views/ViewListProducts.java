@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -39,7 +40,7 @@ public class ViewListProducts extends AppCompatActivity implements View.OnClickL
     TextView countCart;
     TextView textInfoCart;
 
-    ProgressBar progressListProducts;
+    RelativeLayout layoutLoad;
     TextView textInfoProducts;
 
     SwipeRefreshLayout swiper;
@@ -60,7 +61,7 @@ public class ViewListProducts extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        progressListProducts = findViewById(R.id.progressListProducts);
+        layoutLoad = findViewById(R.id.layoutLoad);
         textInfoProducts = findViewById(R.id.textInfoProducts);
 
         swiper = findViewById(R.id.swiper);
@@ -130,7 +131,7 @@ public class ViewListProducts extends AppCompatActivity implements View.OnClickL
 
     public void ListProducts(){
 
-        progressListProducts.setVisibility(View.VISIBLE);
+        layoutLoad.setVisibility(list_products != null ? list_products.size() > 0 ? View.GONE : View.VISIBLE : View.VISIBLE);
         textInfoProducts.setVisibility(View.GONE);
         swiper.setVisibility(list_products != null ? list_products.size() > 0 ? View.VISIBLE : View.GONE : View.GONE);
 
@@ -160,19 +161,19 @@ public class ViewListProducts extends AppCompatActivity implements View.OnClickL
                                 }
                                 adapterListProducts = new AdapterListProducts(context, list_products);
                                 recycler.setAdapter(adapterListProducts);
-                                progressListProducts.setVisibility(View.GONE);
+                                layoutLoad.setVisibility(View.GONE);
                                 textInfoProducts.setVisibility(View.GONE);
                                 swiper.setVisibility(View.VISIBLE);
 
                             }else{
-                                progressListProducts.setVisibility(View.GONE);
+                                layoutLoad.setVisibility(View.GONE);
                                 swiper.setVisibility(View.GONE);
                                 textInfoProducts.setVisibility(View.VISIBLE);
                                 textInfoProducts.setText(getString(R.string.not_item_products));
                             }
                         }catch (JSONException e){
                             swiper.setRefreshing(false);
-                            progressListProducts.setVisibility(View.GONE);
+                            layoutLoad.setVisibility(View.GONE);
                             swiper.setVisibility(View.GONE);
                             textInfoProducts.setVisibility(View.VISIBLE);
                             textInfoProducts.setText(getString(R.string.error_server));
@@ -182,7 +183,7 @@ public class ViewListProducts extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onError(ANError anError) {
                         swiper.setRefreshing(false);
-                        progressListProducts.setVisibility(View.GONE);
+                        layoutLoad.setVisibility(View.GONE);
                         swiper.setVisibility(View.GONE);
                         textInfoProducts.setVisibility(View.VISIBLE);
                         textInfoProducts.setText(getString(R.string.error_server));
