@@ -17,7 +17,7 @@
     <string name="negative_alert">Não</string>
     <string name="message_remove_item_cart">%s removido com sucesso</string>
     <string name="label_remove">Excluir</string>
-    <string name="message_add_cart">%s adicionado com suceso</string>
+    <string name="message_add_cart">%s adicionado com sucesso</string>
     <string name="message_update_cart">%s atualizado com sucesso</string>
     <string name="message_erro_add_cart">Erro ao adicionar %s</string>
     <string name="text_no_item_cart">Você não possui nenhum produto dentro seu carrinho</string>
