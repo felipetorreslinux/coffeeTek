@@ -230,15 +230,15 @@ public class ViewCart extends AppCompatActivity implements View.OnClickListener 
         public String sugarProd(ProductsModel productsModel){
             switch (productsModel.getSugar()){
                 case 0:
-                    return "Sem Açúcar";
+                    return getString(R.string.sugar0);
                 case 1:
-                    return "Pouco Adoçado";
+                    return getString(R.string.sugar1);
                 case 2:
-                    return "Adoçado";
+                    return getString(R.string.sugar2);
                 case 3:
-                    return "Bem Adoçado";
+                    return getString(R.string.sugar3);
                 default:
-                    return "Adoçado";
+                    return getString(R.string.sugar1);
             }
         }
 

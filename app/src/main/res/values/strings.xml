@@ -26,4 +26,8 @@
     <string name="message_pay_cart">Deseja finalizar seu carrinho agora?</string>
     <string name="message_finnaly_cart">Carrinho finalizado com sucesso\nObrigado e volte sempre</string>
     <string name="text_message_remove_sucess">%s removido com sucesso</string>
+    <string name="sugar0">Sem Açúcar</string>
+    <string name="sugar1">Pouco Adoçado</string>
+    <string name="sugar2">Adoçado</string>
+    <string name="sugar3">Bem Adoçado</string>
 </resources>
