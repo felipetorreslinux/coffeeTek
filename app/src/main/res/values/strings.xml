@@ -30,4 +30,6 @@
     <string name="sugar1">Pouco Adoçado</string>
     <string name="sugar2">Adoçado</string>
     <string name="sugar3">Bem Adoçado</string>
+    <string name="label_itens">itens</string>
+    <string name="label_item">item</string>
 </resources>
