@@ -9,4 +9,5 @@
     <string name="label_for_addtionals">Adicionais</string>
     <string name="label_for_quantity">Quantidade</string>
     <string name="label_button_detail_product">Colocar no Carrinho</string>
+    <string name="info_cart_count">Você tem %d %s no carrinho</string>
 </resources>

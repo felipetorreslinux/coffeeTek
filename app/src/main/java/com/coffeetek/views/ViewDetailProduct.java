@@ -1,5 +1,6 @@
 package com.coffeetek.views;
 
+import android.app.VoiceInteractor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,9 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.coffeetek.R;
 import com.coffeetek.models.ProductsModel;
+import com.coffeetek.sqlite.SQLiCart;
 import com.coffeetek.utils.Images;
 import com.coffeetek.utils.Quantity;
 
@@ -40,12 +43,14 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
     ImageView btnRemoveQtd;
 
     Button btnAddCart;
+    SQLiCart sqLiCart;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
         this.productsModel = (ProductsModel) getIntent().getExtras().getSerializable("product");
+        this.sqLiCart = new SQLiCart(this);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -226,8 +231,23 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.btnAddCart:
-
+                saveCart();
                 break;
+        }
+    }
+
+    private void saveCart() {
+        switch (sqLiCart.add(productsModel)){
+            case 1:
+                Toast.makeText(this, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
+                break;
+            case 2:
+                Toast.makeText(this, "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(this, "Erro ao salvar", Toast.LENGTH_SHORT).show();
+                break;
+
         }
     }
 }

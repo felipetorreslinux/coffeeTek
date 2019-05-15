@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -21,7 +22,8 @@
 
     </android.support.v7.widget.Toolbar>
 
-   <RelativeLayout
+    <RelativeLayout
+       android:layout_weight="1"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:background="@color/colorWhite">
@@ -52,5 +54,16 @@
 
    </RelativeLayout>
 
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/textInfoCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorText"
+        android:textColor="@color/colorWhite"
+        android:layout_gravity="center"
+        android:padding="16dp"
+        android:gravity="center"
+        android:textSize="16dp"/>
 
 </LinearLayout>

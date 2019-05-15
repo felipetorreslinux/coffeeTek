@@ -1,5 +1,7 @@
 package com.coffeetek.utils;
 
+import android.widget.TextView;
+
 import com.coffeetek.R;
 
 public class Quantity {
