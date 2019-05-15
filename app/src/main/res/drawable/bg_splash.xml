@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <color android:color="@color/colorBege"/>
+        <bitmap android:src="@drawable/ic_fundo"
+            android:gravity="fill"/>
+    </item>
+    <item>
+        <bitmap android:src="@drawable/ic_logo_fundo"
+            android:gravity="center"/>
     </item>
 </layer-list>

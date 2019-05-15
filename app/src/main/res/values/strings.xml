@@ -24,5 +24,6 @@
     <string name="label_text_pay_cart">Finalizar Carrinho</string>
     <string name="title_pay_cart">Finalizar Carrinho</string>
     <string name="message_pay_cart">Deseja finalizar seu carrinho agora?</string>
-    <string name="message_finnaly_cart">Carrinho finalizado com sucesso</string>
+    <string name="message_finnaly_cart">Carrinho finalizado com sucesso\nObrigado e volte sempre</string>
+    <string name="text_message_remove_sucess">%s removido com sucesso</string>
 </resources>

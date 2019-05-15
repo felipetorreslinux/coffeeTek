@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.coffeetek.R;
 import com.coffeetek.models.ProductsModel;
 import com.coffeetek.sqlite.SQLiCart;
+import com.coffeetek.utils.Alert;
 import com.coffeetek.utils.Images;
 import com.coffeetek.utils.Quantity;
 import com.daimajia.swipe.SwipeLayout;
@@ -32,6 +33,7 @@ import java.util.List;
 
 public class ViewCart extends AppCompatActivity implements View.OnClickListener {
 
+    Alert alert;
     Context context;
     Toolbar toolbar;
 
@@ -48,6 +50,7 @@ public class ViewCart extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         this.context = this;
+        this.alert = new Alert(this);
         this.sqLiCart = new SQLiCart(this);
 
         toolbar = findViewById(R.id.toolbar);
@@ -251,6 +254,7 @@ public class ViewCart extends AppCompatActivity implements View.OnClickListener 
                     sqLiCart.removeItemCart(productsModel);
                     list.remove(productsModel);
                     notifyItemRemoved(position);
+                    alert.openBottom(getString(R.string.text_message_remove_sucess, productsModel.getTitle()));
                 }
             });
             builder.setNegativeButton(context.getString(R.string.negative_alert), null);
@@ -270,7 +274,7 @@ public class ViewCart extends AppCompatActivity implements View.OnClickListener 
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 sqLiCart.removeAllItensCart();
-                Toast.makeText(context, getString(R.string.message_finnaly_cart), Toast.LENGTH_SHORT).show();
+                alert.openBottom(getString(R.string.message_finnaly_cart));
                 finish();
             }
         });

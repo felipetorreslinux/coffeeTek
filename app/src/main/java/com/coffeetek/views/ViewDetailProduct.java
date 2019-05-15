@@ -1,34 +1,29 @@
 package com.coffeetek.views;
 
-import android.app.VoiceInteractor;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.coffeetek.R;
 import com.coffeetek.models.ProductsModel;
 import com.coffeetek.sqlite.SQLiCart;
 import com.coffeetek.utils.Additionais;
+import com.coffeetek.utils.Alert;
 import com.coffeetek.utils.Images;
 import com.coffeetek.utils.Quantity;
 
 public class ViewDetailProduct extends AppCompatActivity implements View.OnClickListener {
 
+    Alert alert;
     ProductsModel productsModel;
 
     LinearLayout layoutDetail;
@@ -50,7 +45,6 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
     ImageView imageChocolate;
     ImageView imageCinnamon;
     ImageView imageCoffee;
-    ImageView imageCream;
     ImageView imageMilk;
 
     ImageView btnAddQtd;
@@ -67,6 +61,7 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_detail_product);
         this.productsModel = (ProductsModel) getIntent().getExtras().getSerializable("product");
         this.sqLiCart = new SQLiCart(this);
+        this.alert = new Alert(this);
         this.additionais = new Additionais();
 
         layoutDetail = findViewById(R.id.layoutDetail);
@@ -102,7 +97,6 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
         imageChocolate = findViewById(R.id.imageChocolate);
         imageCinnamon = findViewById(R.id.imageCinnamon);
         imageCoffee = findViewById(R.id.imageCoffee);
-        imageCream = findViewById(R.id.imageCream);
         imageMilk = findViewById(R.id.imageMilk);
 
         btnAddQtd = findViewById(R.id.btnAddQtd);
@@ -130,8 +124,8 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
         imageChocolate.setVisibility(additionais.itens(productsModel).contains("chocolate") ? View.VISIBLE : View.GONE);
         imageCinnamon.setVisibility(additionais.itens(productsModel).contains("cinnamon") ? View.VISIBLE : View.GONE);
         imageCoffee.setVisibility(additionais.itens(productsModel).contains("coffee") ? View.VISIBLE : View.GONE);
-        imageCream.setVisibility(additionais.itens(productsModel).contains("milk") ? View.VISIBLE : View.GONE);
         imageMilk.setVisibility(additionais.itens(productsModel).contains("milk") ? View.VISIBLE : View.GONE);
+        imageMilk.setVisibility(additionais.itens(productsModel).contains("chantilly") ? View.VISIBLE : View.GONE);
 
     }
 
@@ -154,6 +148,57 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.imageCupP:
+                selectedCup(imageCupP);
+                productsModel.setSize(1);
+                textMLProd.setText(Quantity.qtdMl(1));
+                break;
+            case R.id.imageCupM:
+                selectedCup(imageCupM);
+                productsModel.setSize(2);
+                textMLProd.setText(Quantity.qtdMl(2));
+                break;
+            case R.id.imageCupG:
+                selectedCup(imageCupG);
+                productsModel.setSize(3);
+                textMLProd.setText(Quantity.qtdMl(3));
+                break;
+
+            case R.id.imageSugar0:
+                selectedSugar(0);
+                productsModel.setSugar(0);
+                break;
+            case R.id.imageSugar1:
+                selectedSugar(1);
+                productsModel.setSugar(1);
+                break;
+            case R.id.imageSugar2:
+                selectedSugar(2);
+                productsModel.setSugar(2);
+                break;
+            case R.id.imageSugar3:
+                selectedSugar(3);
+                productsModel.setSugar(3);
+                break;
+
+            case R.id.btnAddQtd:
+                productsModel.setQuantity(productsModel.getQuantity() + 1);
+                textQtdProd.setText(Integer.toString(productsModel.getQuantity()));
+                break;
+            case R.id.btnRemoveQtd:
+                productsModel.setQuantity(productsModel.getQuantity() <= 1 ? 1 : productsModel.getQuantity() - 1);
+                textQtdProd.setText(Integer.toString(productsModel.getQuantity()));
+                break;
+
+            case R.id.btnAddCart:
+                saveCart();
+                break;
+        }
     }
 
     public void cupSize(int size){
@@ -218,76 +263,20 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.imageCupP:
-                selectedCup(imageCupP);
-                productsModel.setSize(1);
-                textMLProd.setText(Quantity.qtdMl(1));
-                break;
-            case R.id.imageCupM:
-                selectedCup(imageCupM);
-                productsModel.setSize(2);
-                textMLProd.setText(Quantity.qtdMl(2));
-                break;
-            case R.id.imageCupG:
-                selectedCup(imageCupG);
-                productsModel.setSize(3);
-                textMLProd.setText(Quantity.qtdMl(3));
-                break;
-
-            case R.id.imageSugar0:
-                selectedSugar(0);
-                productsModel.setSugar(0);
-                break;
-            case R.id.imageSugar1:
-                selectedSugar(1);
-                productsModel.setSugar(1);
-                break;
-            case R.id.imageSugar2:
-                selectedSugar(2);
-                productsModel.setSugar(2);
-                break;
-            case R.id.imageSugar3:
-                selectedSugar(3);
-                productsModel.setSugar(3);
-                break;
-
-            case R.id.btnAddQtd:
-                productsModel.setQuantity(productsModel.getQuantity() + 1);
-                textQtdProd.setText(Integer.toString(productsModel.getQuantity()));
-                break;
-            case R.id.btnRemoveQtd:
-                productsModel.setQuantity(productsModel.getQuantity() <= 1 ? 1 : productsModel.getQuantity() - 1);
-                textQtdProd.setText(Integer.toString(productsModel.getQuantity()));
-                break;
-
-            case R.id.btnAddCart:
-                saveCart();
-                break;
-        }
-    }
-
-    private void saveCart() {
+    public void saveCart() {
         switch (sqLiCart.add(productsModel)){
             case 1:
-                alertAddCart(getString(R.string.message_add_cart, productsModel.getTitle()));
+                alert.openCenter(getString(R.string.message_add_cart, productsModel.getTitle()));
                 break;
             case 2:
-                alertAddCart(getString(R.string.message_add_cart, productsModel.getTitle()));
+                alert.openCenter(getString(R.string.message_add_cart, productsModel.getTitle()));
                 break;
             default:
-                alertAddCart(getString(R.string.message_erro_add_cart, productsModel.getTitle()));
+                alert.openCenter(getString(R.string.message_erro_add_cart, productsModel.getTitle()));
                 break;
 
         }
     }
 
-    public Snackbar alertAddCart(String message){
-        Snackbar snack = Snackbar.make(layoutDetail, message, Snackbar.LENGTH_SHORT);
-        snack.show();
-        return snack;
-    }
 
 }
