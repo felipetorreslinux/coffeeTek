@@ -36,8 +36,8 @@
             android:background="@color/colorBgItem">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_centerInParent="true"
                 app:lottie_rawRes="@raw/load"
