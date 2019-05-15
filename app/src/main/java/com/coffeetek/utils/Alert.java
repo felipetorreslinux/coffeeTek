@@ -37,4 +37,14 @@ public class Alert {
         toast.show();
         return toast;
     }
+
+    public Toast viewCart(String message){
+        Toast toast = Toast.makeText(context, null, Toast.LENGTH_LONG);
+        View view = LayoutInflater.from(context).inflate(R.layout.text_alert, null);
+        TextView textView = view.findViewById(R.id.text_alert);
+        textView.setText(message);
+        toast.setView(view);
+        toast.show();
+        return toast;
+    }
 }

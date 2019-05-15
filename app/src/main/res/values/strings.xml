@@ -32,4 +32,6 @@
     <string name="sugar3">Bem Adoçado</string>
     <string name="label_itens">itens</string>
     <string name="label_item">item</string>
+    <string name="share_cart">cart</string>
+    <string name="message_view_cart">Olá, para remover o item do carrinho basta deslizar o item para esquerda e clicar em excluir</string>
 </resources>

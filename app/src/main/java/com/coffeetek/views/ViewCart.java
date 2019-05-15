@@ -27,6 +27,7 @@ import com.coffeetek.sqlite.SQLiCart;
 import com.coffeetek.utils.Alert;
 import com.coffeetek.utils.Images;
 import com.coffeetek.utils.Quantity;
+import com.coffeetek.utils.ShareUtils;
 import com.daimajia.swipe.SwipeLayout;
 
 import java.util.List;
@@ -44,6 +45,7 @@ public class ViewCart extends AppCompatActivity implements View.OnClickListener 
     SQLiCart sqLiCart;
 
     ListCart listCart;
+    ShareUtils shareUtils;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class ViewCart extends AppCompatActivity implements View.OnClickListener 
         this.context = this;
         this.alert = new Alert(this);
         this.sqLiCart = new SQLiCart(this);
+        this.shareUtils = new ShareUtils(this);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,10 +71,13 @@ public class ViewCart extends AppCompatActivity implements View.OnClickListener 
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setNestedScrollingEnabled(false);
 
-
         listCart = new ListCart();
         listCart.execute();
 
+        if(!shareUtils.isViewCart() && sqLiCart.list().size() > 0){
+            alert.viewCart(getString(R.string.message_view_cart));
+            shareUtils.setViewCart(true);
+        }
     }
 
     @Override
