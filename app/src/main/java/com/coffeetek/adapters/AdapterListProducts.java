@@ -16,8 +16,6 @@ import com.coffeetek.R;
 import com.coffeetek.models.ProductsModel;
 import com.coffeetek.utils.Images;
 import com.coffeetek.views.ViewDetailProduct;
-import com.daimajia.swipe.SwipeLayout;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

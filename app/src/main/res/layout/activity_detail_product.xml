@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutDetail"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -93,7 +94,7 @@
                     android:text="@string/label_for_size"
                     android:layout_marginRight="12dp"
                     android:singleLine="true"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
 
                 <ImageView
                     android:id="@+id/imageCupP"
@@ -141,7 +142,7 @@
                     android:text="@string/label_for_sugar"
                     android:layout_marginRight="12dp"
                     android:singleLine="true"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
 
                 <ImageView
                     android:id="@+id/imageSugar0"
@@ -187,22 +188,85 @@
                 android:background="@color/colorGray"/>
 
             <LinearLayout
+                android:id="@+id/layputAdditionals"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:paddingHorizontal="24dp">
 
                 <TextView
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="@color/colorText"
                     android:text="@string/label_for_addtionals"
                     android:layout_marginRight="12dp"
                     android:singleLine="true"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
 
+                <HorizontalScrollView
+                    android:layout_weight="1"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end">
+
+                        <ImageView
+                            android:id="@+id/imageChocolate"
+                            android:clickable="true"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/chocolate"
+                            android:layout_marginHorizontal="10dp"/>
+
+                        <ImageView
+                            android:id="@+id/imageCinnamon"
+                            android:clickable="true"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/cinnamon"
+                            android:layout_marginHorizontal="10dp"/>
+
+                        <ImageView
+                            android:id="@+id/imageCoffee"
+                            android:clickable="true"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/coffe"
+                            android:layout_marginHorizontal="10dp"/>
+
+                        <ImageView
+                            android:id="@+id/imageCream"
+                            android:clickable="true"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/cream"
+                            android:layout_marginHorizontal="10dp"/>
+
+                        <ImageView
+                            android:id="@+id/imageMilk"
+                            android:clickable="true"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/milk"
+                            android:layout_marginHorizontal="10dp"/>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
 
             </LinearLayout>
 
@@ -226,7 +290,7 @@
                     android:text="@string/label_for_quantity"
                     android:layout_marginRight="12dp"
                     android:singleLine="true"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
 
 
                 <LinearLayout

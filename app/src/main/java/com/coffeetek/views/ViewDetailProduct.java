@@ -1,22 +1,29 @@
 package com.coffeetek.views;
 
 import android.app.VoiceInteractor;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coffeetek.R;
 import com.coffeetek.models.ProductsModel;
 import com.coffeetek.sqlite.SQLiCart;
+import com.coffeetek.utils.Additionais;
 import com.coffeetek.utils.Images;
 import com.coffeetek.utils.Quantity;
 
@@ -24,6 +31,7 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
 
     ProductsModel productsModel;
 
+    LinearLayout layoutDetail;
     Toolbar toolbar;
     ImageView imageProd;
     TextView textNameProd;
@@ -38,12 +46,20 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
     ImageView imageSugar2;
     ImageView imageSugar3;
 
+    LinearLayout layputAdditionals;
+    ImageView imageChocolate;
+    ImageView imageCinnamon;
+    ImageView imageCoffee;
+    ImageView imageCream;
+    ImageView imageMilk;
+
     ImageView btnAddQtd;
     TextView textQtdProd;
     ImageView btnRemoveQtd;
 
     Button btnAddCart;
     SQLiCart sqLiCart;
+    Additionais additionais;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +67,9 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_detail_product);
         this.productsModel = (ProductsModel) getIntent().getExtras().getSerializable("product");
         this.sqLiCart = new SQLiCart(this);
+        this.additionais = new Additionais();
 
+        layoutDetail = findViewById(R.id.layoutDetail);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -78,12 +96,21 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
         imageSugar3 = findViewById(R.id.imageSugar3);
         imageSugar3.setOnClickListener(this);
 
+        layputAdditionals = findViewById(R.id.layputAdditionals);
+        layputAdditionals.setVisibility(productsModel.getAdditional().equals("") ? View.GONE : View.VISIBLE);
+
+        imageChocolate = findViewById(R.id.imageChocolate);
+        imageCinnamon = findViewById(R.id.imageCinnamon);
+        imageCoffee = findViewById(R.id.imageCoffee);
+        imageCream = findViewById(R.id.imageCream);
+        imageMilk = findViewById(R.id.imageMilk);
+
         btnAddQtd = findViewById(R.id.btnAddQtd);
         btnAddQtd.setOnClickListener(this);
-        textQtdProd = findViewById(R.id.textQtdProd);
+
         btnRemoveQtd = findViewById(R.id.btnRemoveQtd);
         btnRemoveQtd.setOnClickListener(this);
-
+        textQtdProd = findViewById(R.id.textQtdProd);
         btnAddCart = findViewById(R.id.btnAddCart);
         btnAddCart.setOnClickListener(this);
 
@@ -99,6 +126,12 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
         cupSize(productsModel.getSize());
         selectedSugar(productsModel.getSugar());
         textQtdProd.setText(Integer.toString(productsModel.getQuantity()));
+
+        imageChocolate.setVisibility(additionais.itens(productsModel).contains("chocolate") ? View.VISIBLE : View.GONE);
+        imageCinnamon.setVisibility(additionais.itens(productsModel).contains("cinnamon") ? View.VISIBLE : View.GONE);
+        imageCoffee.setVisibility(additionais.itens(productsModel).contains("coffee") ? View.VISIBLE : View.GONE);
+        imageCream.setVisibility(additionais.itens(productsModel).contains("milk") ? View.VISIBLE : View.GONE);
+        imageMilk.setVisibility(additionais.itens(productsModel).contains("milk") ? View.VISIBLE : View.GONE);
 
     }
 
@@ -239,15 +272,22 @@ public class ViewDetailProduct extends AppCompatActivity implements View.OnClick
     private void saveCart() {
         switch (sqLiCart.add(productsModel)){
             case 1:
-                Toast.makeText(this, "Salvo com sucesso", Toast.LENGTH_SHORT).show();
+                alertAddCart(getString(R.string.message_add_cart, productsModel.getTitle()));
                 break;
             case 2:
-                Toast.makeText(this, "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
+                alertAddCart(getString(R.string.message_add_cart, productsModel.getTitle()));
                 break;
             default:
-                Toast.makeText(this, "Erro ao salvar", Toast.LENGTH_SHORT).show();
+                alertAddCart(getString(R.string.message_erro_add_cart, productsModel.getTitle()));
                 break;
 
         }
     }
+
+    public Snackbar alertAddCart(String message){
+        Snackbar snack = Snackbar.make(layoutDetail, message, Snackbar.LENGTH_SHORT);
+        snack.show();
+        return snack;
+    }
+
 }

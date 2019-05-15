@@ -1,11 +1,15 @@
 package com.coffeetek.sqlite;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.coffeetek.R;
 import com.coffeetek.models.ProductsModel;
+import com.coffeetek.views.ViewCart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +34,7 @@ public class SQLiCart {
         contentValues.put("sugar", productsModel.getSugar());
         contentValues.put("additional", productsModel.getAdditional());
         contentValues.put("qtd", productsModel.getQuantity());
-        Cursor cursor = database.rawQuery("select * from "+bancoCore.table_cart+" where title = ?", new String[]{productsModel.getTitle()});
+        Cursor cursor = database.rawQuery("select * from "+bancoCore.table_cart+" where title = ? and size = ? and sugar = ?", new String[]{productsModel.getTitle(), Integer.toString(productsModel.getSize()), Integer.toString(productsModel.getSugar())});
         if(cursor != null){
             try{
                 if(cursor.getCount() > 0){
@@ -60,6 +64,7 @@ public class SQLiCart {
                     cursor.moveToFirst();
                     do {
                         ProductsModel productsModel = new ProductsModel();
+                        productsModel.setId(cursor.getInt(cursor.getColumnIndex("_id")));
                         productsModel.setTitle(cursor.getString(cursor.getColumnIndex("title")));
                         productsModel.setImage(cursor.getString(cursor.getColumnIndex("image")));
                         productsModel.setSize(cursor.getInt(cursor.getColumnIndex("size")));
@@ -78,20 +83,23 @@ public class SQLiCart {
         return list;
     }
 
-    public boolean remove(ProductsModel productsModel){
-        Cursor cursor = database.rawQuery("select * from "+bancoCore.table_cart+" where title = ?", new String[]{productsModel.getTitle()});
+    public void removeItemCart(ProductsModel productsModel){
+        Cursor cursor = database.rawQuery("select * from "+bancoCore.table_cart+" where _id = ?", new String[]{Integer.toString(productsModel.getId())});
         if(cursor != null){
             try{
                 if(cursor.getCount() > 0){
-                    database.delete(bancoCore.table_cart, "title = ?", new String[]{productsModel.getTitle()});
-                    return true;
+                    database.delete(bancoCore.table_cart, "_id = ?", new String[]{Integer.toString(productsModel.getId())});
                 }
-                return false;
             }finally {
                 cursor.close();
             }
         }
-        return false;
+    }
+
+    public void updateQtdItemCart(ProductsModel productsModel){
+       ContentValues contentValues = new ContentValues();
+       contentValues.put("qtd", productsModel.getQuantity());
+       database.update(bancoCore.table_cart, contentValues, "_id = ?", new String[]{Integer.toString(productsModel.getId())});
     }
 
     public int count(){
@@ -109,4 +117,10 @@ public class SQLiCart {
         }
         return 0;
     }
+
+    public void removeAllItensCart(){
+        database.delete(bancoCore.table_cart, null, null);
+    }
+
+
 }

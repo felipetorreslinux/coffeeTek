@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="4dp">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:elevation="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:textColor="@color/colorText"
+            android:layout_gravity="center"
+            android:text="@string/toolbar_title_cart"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/textInfoCart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBgItem"
+        android:paddingHorizontal="24dp"
+        android:text="@string/text_no_item_cart"
+        android:textColor="@color/colorText"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_weight="1"
+        android:id="@+id/recycler"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBgItem"/>
+
+    <TextView
+        android:id="@+id/textBtnPayCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorText"
+        android:textColor="@color/colorWhite"
+        android:padding="16dp"
+        android:textSize="16dp"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+</LinearLayout>

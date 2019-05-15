@@ -40,19 +40,27 @@
            android:id="@+id/textInfoProducts"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
+           android:paddingHorizontal="24dp"
            android:background="@color/colorWhite"
            android:textColor="@color/colorText"
            android:gravity="center"
-           android:textSize="16dp"/>
+           android:textSize="20dp"/>
 
-       <android.support.v7.widget.RecyclerView
-           android:id="@+id/recycler"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:overScrollMode="never"
-           android:scrollbars="none"/>
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swiper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-   </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </RelativeLayout>
 
     <TextView
         android:visibility="gone"

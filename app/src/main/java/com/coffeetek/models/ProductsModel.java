@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ProductsModel implements Serializable {
 
+    int id;
     String title;
     String image;
     int size;
@@ -13,6 +14,14 @@ public class ProductsModel implements Serializable {
     int quantity;
 
     public ProductsModel() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

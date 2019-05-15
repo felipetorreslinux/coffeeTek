@@ -10,4 +10,19 @@
     <string name="label_for_quantity">Quantidade</string>
     <string name="label_button_detail_product">Colocar no Carrinho</string>
     <string name="info_cart_count">Você tem %d %s no carrinho</string>
+    <string name="toolbar_title_cart">Carrinho</string>
+    <string name="title_alert_remove">Remover</string>
+    <string name="message_alert_remove">Deseja remover %s do seu carrinho?</string>
+    <string name="positive_alert">Sim</string>
+    <string name="negative_alert">Não</string>
+    <string name="message_remove_item_cart">%s removido com sucesso</string>
+    <string name="label_remove">Excluir</string>
+    <string name="message_add_cart">%s adicionado com suceso</string>
+    <string name="message_update_cart">%s atualizado com sucesso</string>
+    <string name="message_erro_add_cart">Erro ao adicionar %s</string>
+    <string name="text_no_item_cart">Você não possui nenhum produto dentro seu carrinho</string>
+    <string name="label_text_pay_cart">Finalizar Carrinho</string>
+    <string name="title_pay_cart">Finalizar Carrinho</string>
+    <string name="message_pay_cart">Deseja finalizar seu carrinho agora?</string>
+    <string name="message_finnaly_cart">Carrinho finalizado com sucesso</string>
 </resources>
