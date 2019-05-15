@@ -171,7 +171,11 @@ public class ViewListProducts extends AppCompatActivity implements View.OnClickL
                                 textInfoProducts.setText(getString(R.string.not_item_products));
                             }
                         }catch (JSONException e){
-
+                            swiper.setRefreshing(false);
+                            progressListProducts.setVisibility(View.GONE);
+                            swiper.setVisibility(View.GONE);
+                            textInfoProducts.setVisibility(View.VISIBLE);
+                            textInfoProducts.setText(getString(R.string.error_server));
                         }
                     }
 
